@@ -1,0 +1,710 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+// PROFILE COMPONENTS
+
+.profile {
+  display: flex;
+  margin-top: 20px;
+
+  .profileRight {
+    flex: 9;
+
+    .profileRightBottom {
+      display: flex;
+    }
+
+    .profileRightTop {
+      .profileCover {
+        height: 320px;
+        position: relative;
+
+        .profileCoverImg {
+          width: 100%;
+          height: 250px;
+          object-fit: cover;
+        }
+
+        .profileUserImg {
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+          border-radius: 50%;
+          position: absolute;
+          left: 0;
+          right: 0;
+          margin: auto;
+          top: 150px;
+          border: 3px solid white;
+        }
+      }
+      .profileInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h4 {
+          font-size: 25px;
+        }
+
+        span {
+          font-weight: 300;
+          margin-bottom: 100px;
+        }
+      }
+    }
+  }
+  // SIDEBAR COMPONNENT
+
+  .sidebar {
+    flex: 2;
+    margin-left: 50px;
+    overflow-y: scroll;
+    position: sticky;
+    top: 50px;
+    max-height: 100vh;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+        span {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    button {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 50px;
+      border-color: aqua;
+    }
+    .hr {
+      border: 1px solid black;
+      width: 80%;
+    }
+    .sidebarFriendsContainer {
+      display: flex;
+      margin-top: 30px;
+      align-items: center;
+      img {
+        width: 50px;
+        margin-right: 8px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #949090;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(230, 226, 226);
+  }
+}
+
+// HOMEPAGE
+
+.homeContainer {
+  display: flex;
+  margin-top: 20px;
+
+  // SIDEBAR COMPONNENT
+
+  .sidebar {
+    flex: 2;
+    margin-left: 50px;
+    overflow-y: scroll;
+    position: sticky;
+    top: 50px;
+    max-height: 100vh;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+        span {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    button {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 50px;
+      border-color: aqua;
+    }
+    .hr {
+      border: 1px solid black;
+      width: 80%;
+    }
+    .sidebarFriendsContainer {
+      display: flex;
+      margin-top: 30px;
+      align-items: center;
+      img {
+        width: 50px;
+        margin-right: 8px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #949090;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(230, 226, 226);
+  }
+}
+// FEED COMPONNENT
+
+.feed {
+  flex: 5.5;
+  overflow-y: scroll;
+  position: sticky;
+  top: 50px;
+
+  // SHARE COMPONNENT
+
+  .share {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 1px 16px -8px rgba(0, 0, 0, 68);
+
+    .shareWrapper {
+      padding: 10px;
+
+      .shareImgContainer {
+        padding: 0 20px 10px 20px;
+        position: relative;
+
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
+
+        .cancel {
+          position: absolute;
+          top: 0;
+          font-size: 40px;
+          right: 20px;
+          cursor: pointer;
+          opacity: 0.7;
+        }
+      }
+
+      .shareTop {
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-right: 10px;
+        }
+
+        input {
+          border: none;
+          width: 80%;
+        }
+
+        input:focus {
+          outline: none;
+        }
+      }
+    }
+    .hr {
+      margin: 20px;
+      border: 1px solid black;
+    }
+
+    .shareBottom {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+      flex-direction: column;
+
+      .shareOptions {
+        display: flex;
+
+        .shareOption {
+          display: flex;
+          align-items: center;
+          margin-right: 30px;
+          cursor: pointer;
+
+          .icon {
+            font-size: 18px;
+          }
+          span {
+            font-size: 14px;
+            font-weight: 500;
+          }
+        }
+        button {
+          border: none;
+          background-color: rgb(17, 173, 79);
+          border: 1px solid blue;
+          padding: 10px;
+          border-radius: 20px;
+          margin-left: 50px;
+          cursor: pointer;
+          color: white;
+        }
+      }
+    }
+  }
+  .post {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 1px 16px -8px rgba(0, 0, 0, 68);
+    margin: 30px 0;
+
+    .postWrapper {
+      padding: 10px;
+      margin-top: 20px;
+
+      .postTop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .postTopLeft {
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+          .username {
+            font-size: 15px;
+            font-weight: 500;
+            margin: 0 10px;
+          }
+
+          .date {
+            font-size: 12px;
+          }
+        }
+      }
+
+      .postCenter {
+        margin: 10px 0;
+
+        img {
+          margin-top: 20px;
+          width: 100%;
+          max-height: 500px;
+          object-fit: contain;
+        }
+      }
+
+      .postBottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .postBottomLeft {
+          display: flex;
+          align-items: center;
+
+          .likeIcon {
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+            cursor: pointer;
+          }
+          span {
+            font-size: 15px;
+          }
+        }
+        .postBottomRight {
+          display: flex;
+          align-items: center;
+
+          span {
+            cursor: pointer;
+            border-bottom: 1px dashed grey;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// RIGHTBAR COMPONENT
+
+.rightbar {
+  flex: 3.5;
+
+  .rightbarFollowButton {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: rgb(56, 56, 230);
+    color: white;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .rightbarFollowButton :focus {
+    outline: none;
+  }
+
+  .rightbarInfo {
+    margin-bottom: 30px;
+
+    .rightbarInfoItem {
+      margin-bottom: 10px;
+
+      .rightbarInfoKey {
+        font-weight: 500;
+        margin-right: 15px;
+        color: #555;
+      }
+
+      .rightbarInfoValue {
+        font-weight: 300;
+      }
+    }
+  }
+  h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .rigthbarFollowings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .rightFollowing {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+      cursor: pointer;
+      img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+    }
+  }
+  .rightbarWrapper {
+    margin-left: 20px;
+
+    .birthdayContainer {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+      }
+
+      span {
+        font-weight: 300;
+        font-size: 15px;
+      }
+    }
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin: 30px 0px;
+    }
+
+    h4 {
+      margin-bottom: 20px;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      li {
+        display: flex;
+        align-items: center;
+        margin-bottom: -20px;
+
+        .rightBarImgContainer {
+          margin-right: 10px;
+          position: relative;
+
+          img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #41d82d;
+            position: absolute;
+            top: 30px;
+            right: 0px;
+            border: 2px solid white;
+          }
+        }
+
+        span {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+// NAVBAR COMPONENT
+
+.navbar {
+  background-color: rgb(133, 246, 19);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 999;
+
+    .leftSide {
+      flex: 1;
+
+      .ownerName {
+        font-size: 24px;
+        font-weight: bold;
+        color: rgb(17, 17, 17);
+      }
+    }
+
+    .centerSide {
+      flex: 2;
+      display: flex;
+      align-items: center;
+      background-color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      gap: 10px;
+
+      .searchIcon {
+        color: #555;
+        font-size: 20px;
+      }
+
+      .centerInput {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 14px;
+      }
+    }
+
+    .rightSide {
+      margin-left: 100px;
+      flex: 2;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 30px;
+
+      .navbarLinks {
+        display: flex;
+        gap: 20px;
+
+        .navbarLink {
+          cursor: pointer;
+          font-size: 16px;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .navbarRightIcons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        .navbarIconItem {
+          position: relative;
+
+          svg {
+            font-size: 24px;
+            cursor: pointer;
+          }
+
+          .iconNotification {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            border-radius: 50%;
+            padding: 2px 6px;
+          }
+        }
+      }
+
+      .navbarImg {
+        margin-left: 100px;
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+// LOGIN
+
+.login {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e3dfdf;
+
+  .loginWrapper {
+    width: 70%;
+    height: 70%;
+    display: flex;
+    .loginLeft,
+    .loginRight {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .loginLeft {
+      h3 {
+        font-size: 50px;
+        font-weight: 800;
+        color: rgb(51, 51, 185);
+      }
+
+      span {
+        font-size: 24px;
+      }
+    }
+
+    .loginRight {
+      h1 {
+        margin-bottom: 100px;
+        font-size: 80px;
+        text-align: center;
+        color: #105207;
+      }
+
+      .loginBox {
+        height: 300px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        input {
+          height: 50px;
+          border-radius: 10px;
+          border: 2px solid gray;
+          font-size: 10px;
+          padding-left: 20px;
+        }
+
+        input:focus {
+          outline: none;
+        }
+
+        button {
+          height: 50px;
+          border-radius: 10px;
+          border: none;
+          background-color: rgb(62, 62, 234);
+          color: white;
+          font-size: 20px;
+          font-weight: 500;
+          cursor: pointer;
+        }
+
+        span {
+          text-align: center;
+          color: #3f4ded;
+        }
+
+        .btn {
+          width: 60%;
+          align-self: center;
+          height: 50px;
+          border-radius: 10px;
+          border: none;
+          background-color: rgb(30, 213, 39);
+          color: white;
+          font-size: 20px;
+          font-weight: 500;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+// REGISTER
