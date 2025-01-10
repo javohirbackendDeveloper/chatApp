@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Chat from "./components/Chat";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
@@ -20,12 +20,15 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={user ? <Home /> : <Register />} />
+        <Route path="/" element={user.userID ? <Home /> : <Register />} />
         <Route
           path="/register"
           element={user ? <Navigate to="/" /> : <Register />}
         />
-        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+        <Route
+          path="/login"
+          element={user.userID ? <Navigate to="/" /> : <Login />}
+        />
         <Route path="/profile/:username" element={<Profile />} />
         <Route path="/chat" element={<Chat />} />
       </Routes>

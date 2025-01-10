@@ -136,11 +136,15 @@ const getFriend = async (req, res) => {
 
     let friendList = [];
     friends.map((friend) => {
-      const { id, username, profilePicture } = friend;
-      friendList.push(id, username, profilePicture);
+      const { _id, username, profilePicture } = friend;
+      friendList.push(_id, username, profilePicture);
     });
 
-    res.json(friendList);
+    res.json({
+      _id: friendList[0],
+      username: friendList[1],
+      profilePicture: friendList[2],
+    });
   } catch (error) {
     console.log(error);
   }

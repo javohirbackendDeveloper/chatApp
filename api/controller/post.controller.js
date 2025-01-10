@@ -1,5 +1,5 @@
-const authSchema = require("../schema/auth.schema");
 const postSchema = require("../schema/post.schema");
+const authSchema = require("../schema/auth.schema");
 
 const addPost = async (req, res, next) => {
   try {
@@ -44,6 +44,8 @@ const putLike = async (req, res, next) => {
   try {
     const foundedPost = await postSchema.findById(req.params.id);
 
+    console.log(foundedPost);
+
     if (!foundedPost.likes.includes(req.body.userId)) {
       await foundedPost.updateOne({ $push: { likes: req.body.userId } });
 
@@ -73,6 +75,7 @@ const getPost = async (req, res, next) => {
 const getPosts = async (req, res, next) => {
   try {
     const currentUser = await authSchema.findById(req.params.userId);
+
     const userPosts = await postSchema.find({ userId: currentUser._id });
     const friendPosts = await Promise.all(
       currentUser.followings.map((friendId) => {
@@ -88,10 +91,27 @@ const getPosts = async (req, res, next) => {
 const getUsername = async (req, res, next) => {
   try {
     const user = await authSchema.findOne({ username: req.params.username });
+
     const posts = await postSchema.find({ userId: user._id });
+    console.log(posts);
+
     res.status(200).json(posts);
   } catch (err) {
     res.status(500).json(err);
+  }
+};
+
+const getUserId = async (req, res, next) => {
+  try {
+    const user = await authSchema.findOne({ username: req.params.username });
+
+    if (!user) {
+      return res.json("This user not found");
+    }
+
+    res.json(user);
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -103,4 +123,5 @@ module.exports = {
   getPost,
   getPosts,
   getUsername,
+  getUserId,
 };

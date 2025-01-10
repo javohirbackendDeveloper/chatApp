@@ -15,12 +15,28 @@ function Share() {
   const { user } = useContext(AuthContext);
   const desc = useRef();
   const [file, setFile] = useState(null);
-
   const submithandler = async (e) => {
     e.preventDefault();
+
+    console.log(user);
+
+    let userId;
+
+    if (user) {
+      try {
+        const res = await axios.get(
+          "http://localhost:4000/api/posts/getUserId/" + user.username
+        );
+        userId = res.data._id;
+      } catch (error) {
+        console.log("Error fetching user ID:", error);
+        return;
+      }
+    }
+
     const newPost = {
-      userId: user._id,
-      desc: desc.current.value,
+      userId: userId,
+      desc: desc?.current.value,
     };
 
     if (file) {
@@ -32,17 +48,19 @@ function Share() {
       try {
         await axios.post("http://localhost:4000/upload", data);
       } catch (error) {
-        console.log(error);
+        console.log("Error uploading file:", error);
+        return;
       }
     }
 
     try {
-      await axios.post("http://localhost:4000/addPost", newPost);
+      await axios.post("http://localhost:4000/api/posts/", newPost);
       window.location.reload();
     } catch (error) {
-      console.log(error);
+      console.log("Error creating post:", error);
     }
   };
+
   return (
     <div className="share">
       <div className="shareWrapper">

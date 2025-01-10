@@ -1,6 +1,7 @@
 const authSchema = require("../schema/auth.schema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
 const register = async (req, res, next) => {
   try {
     const { username, password, email } = req.body;
@@ -15,10 +16,15 @@ const register = async (req, res, next) => {
 
     const hash = await bcrypt.hash(password, 12);
 
-    await authSchema.create({ username, email, password: hash });
+    const newUser = await authSchema.create({
+      username,
+      email,
+      password: hash,
+    });
 
     res.json({
       message: "Successfully registered",
+      user: { username: newUser.username, email: newUser.email },
     });
   } catch (error) {
     next(error);
@@ -36,7 +42,9 @@ const login = async (req, res, next) => {
       });
     }
 
-    const checker = bcrypt.compare(password, foundedUser.password);
+    const checker = await bcrypt.compare(password, foundedUser.password);
+
+    console.log(password, foundedUser.password);
 
     if (!checker) {
       return res.json({
@@ -44,12 +52,7 @@ const login = async (req, res, next) => {
       });
     }
 
-    res.json({ message: "Successfully logged in" });
-    // const token = await jwt.sign(
-    //   foundedUser.password,
-    //   foundedUser.id,
-    //   process.env.JWT_KEY ,
-    // );
+    res.json(foundedUser);
   } catch (error) {
     next(error);
   }

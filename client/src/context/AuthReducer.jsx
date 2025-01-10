@@ -5,6 +5,7 @@ const AuthReducer = (state, action) => {
         user: null,
         isFetching: true,
         error: false,
+        userID: null,
       };
 
     case "LOGIN_SUCCESS":
@@ -12,14 +13,17 @@ const AuthReducer = (state, action) => {
         user: action.payload,
         isFetching: false,
         error: false,
+        userID: state.userID, // userID remains unchanged
       };
 
     case "LOGIN_FAILURE":
       return {
         user: null,
         isFetching: false,
-        error: action.payload,
+        error: true,
+        userID: null, // reset userID to null on failure
       };
+
     case "FOLLOW":
       return {
         ...state,
@@ -28,6 +32,7 @@ const AuthReducer = (state, action) => {
           followings: [...state.user.followings, action.payload],
         },
       };
+
     case "UNFOLLOW":
       return {
         ...state,
@@ -38,6 +43,13 @@ const AuthReducer = (state, action) => {
           ),
         },
       };
+
+    case "SET_USER_ID":
+      return {
+        ...state,
+        userID: action.payload,
+      };
+
     default:
       return state;
   }

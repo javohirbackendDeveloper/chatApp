@@ -18,15 +18,16 @@ function Profile() {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(
-        `http://localhost:4000/getOneUser?username=${username}`
+        `http://localhost:4000/api/users?username=${username}`
       );
-      setUser(res.data);
+      // setUser(res.data);
+      console.log(res);
     };
     fetchUser();
   }, [username]);
 
   return (
-    <div>
+    <>
       <Navbar />
       <div className="profile">
         <Sidebar />
@@ -35,7 +36,7 @@ function Profile() {
             <div className="profileCover">
               <img
                 className="profileCoverImg"
-                src={user.coverPicture ? user.coverPicture : javaSocial}
+                src={user.coverPicture ? PF + user.coverPicture : javaSocial}
                 alt=""
               />
               <img
@@ -55,7 +56,7 @@ function Profile() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

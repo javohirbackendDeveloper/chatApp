@@ -7,15 +7,17 @@ const {
   getPost,
   getPosts,
   getUsername,
+  getUserId,
 } = require("../controller/post.controller");
 
 const postRouter = Router();
 
-postRouter.post("/addPost", addPost);
-postRouter.put("/updatePost/:id", updatePost);
-postRouter.delete("/deletePost/:id", deletePost);
-postRouter.put("/putLike/:id", putLike);
-postRouter.get("/getPost/:id", getPost);
-postRouter.get("/getPosts/:userId", getPosts);
-postRouter.get("/getPosts/profile/:username", getUsername);
+postRouter.post("/", addPost);
+postRouter.put("/:id", updatePost);
+postRouter.delete("/:id", deletePost);
+postRouter.put("/:id/like", putLike);
+postRouter.get("/:id", getPost);
+postRouter.get("/timeline/:userId", getPosts);
+postRouter.get("/profile/:username", getUsername);
+postRouter.get("/getUserId/:username", getUserId);
 module.exports = postRouter;

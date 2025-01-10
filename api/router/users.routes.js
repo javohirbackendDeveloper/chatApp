@@ -10,11 +10,11 @@ const {
 
 const usersRouter = Router();
 
-usersRouter.put("/updateUser/:id", userUpdate);
-usersRouter.delete("/deleteUser/:id", userDelete);
-usersRouter.get("/getOneUser", getOneUser);
-usersRouter.put("/updateFollow/:id", updateFollow);
-usersRouter.put("/updateUnfollow/:id", updateUnfollow);
-usersRouter.get("/getFriends/:userId", getFriend);
+usersRouter.put("/:id", userUpdate);
+usersRouter.delete("/:id", userDelete);
+usersRouter.get("/", getOneUser);
+usersRouter.put("/:id/follow", updateFollow);
+usersRouter.put("/:id/unfollow", updateUnfollow);
+usersRouter.get("/:userId", getFriend);
 
 module.exports = usersRouter;

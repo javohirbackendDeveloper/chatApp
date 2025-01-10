@@ -15,31 +15,33 @@ import Feed from "./Feed";
 import Rightbar from "./Rightbar";
 import { AuthContext } from "../context/AuthContext";
 const PF = "http://localhost:4000/image/";
-const d = "http://localhost:4000/image/profile-photo.jpeg.jpg";
+
 function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
   const { user: currentUser } = useContext(AuthContext);
 
+  console.log(post.img);
+
   useEffect(() => {
-    setIsLiked(post.likes.includes(currentUser._id));
-  }, [currentUser._id, post.likes]);
+    setIsLiked(post.likes.includes(currentUser.userID));
+  }, [currentUser.userID, post.likes]);
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `http://localhost:4000/getOneUser?userId=${post.userId}`
+        `http://localhost:4000/api/users?userId=${post.userId}`
       );
       setUser(res.data);
     };
     fetchData();
   }, [post.userId]);
 
-  const handleLiked = () => {
+  const handleLiked = async () => {
     try {
-      axios.put("http://localhost:4000/putLike/" + post._id, {
-        userId: currentUser._id,
+      await axios.put("http://localhost:4000/api/posts/" + post._id + "/like", {
+        userId: currentUser.userID,
       });
     } catch (error) {
       console.log(error);
@@ -53,7 +55,7 @@ function Post({ post }) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <Link to={`/profile/${user.username}`}>
+            <Link to={`http://localhost:5173/profile/${user.username}`}>
               <img
                 src={user.profilePicture ? PF + user.profilePicture : noUserImg}
                 alt="img"
@@ -67,8 +69,11 @@ function Post({ post }) {
           </div>
         </div>
         <div className="postCenter">
-          <span>{post.desc}</span>
-          <img src={PF + post.img.replace(/^\d+/, "")} alt="img" />
+          <span>{post?.desc}</span>
+          <img
+            src={post.img ? PF + post.img.replace(/^\d+/, "") : noUserImg}
+            alt="img"
+          />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
